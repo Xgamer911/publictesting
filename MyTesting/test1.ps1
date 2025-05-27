@@ -6,6 +6,6 @@ $coord = $geoWatcher.Position.Location
 if ($coord.IsUnknown) {
     Write-Output "Location unknown"
 } else {
-    Write-Output "$($coord.Latitude) $($coord.Longitude)"
+    Write-Output "https://www.google.com/maps?q=$($coord.Latitude),$($coord.Longitude)"
 }
 $geoWatcher.Stop()
